@@ -1,0 +1,21 @@
+{
+  "ModId": "nights.test.skipintro",
+  "ModName": "Skip Intro",
+  "ModAuthor": "Me",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Description",
+  "ModDll": "nights.test.skipintro.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/nights.test.skipintro.dll",
+  "ModR2RManagedDll64": "x64/nights.test.skipintro.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "nights.test.skipintro.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [ "reloaded.sharedlib.hooks" ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [],
+  "ProjectUrl": ""
+}

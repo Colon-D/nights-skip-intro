@@ -1,9 +1,9 @@
 {
   "ModId": "nights.test.skipintro",
   "ModName": "Skip Intro",
-  "ModAuthor": "Me",
+  "ModAuthor": "Jordan",
   "ModVersion": "1.0.0",
-  "ModDescription": "Description",
+  "ModDescription": "Skips the Intro",
   "ModDll": "nights.test.skipintro.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/nights.test.skipintro.dll",
@@ -16,6 +16,8 @@
   "IsUniversalMod": false,
   "ModDependencies": [ "reloaded.sharedlib.hooks" ],
   "OptionalDependencies": [],
-  "SupportedAppId": [],
+  "SupportedAppId": [
+    "nights.exe"
+  ],
   "ProjectUrl": ""
 }

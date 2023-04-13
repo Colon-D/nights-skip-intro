@@ -1,7 +1,10 @@
-﻿using Reloaded.Hooks.ReloadedII.Interfaces;
-using Reloaded.Mod.Interfaces;
+﻿using nights.test.skipintro.Configuration;
 using nights.test.skipintro.Template;
-using nights.test.skipintro.Configuration;
+using Reloaded.Hooks.Definitions;
+using Reloaded.Hooks.Definitions.X86;
+using Reloaded.Mod.Interfaces;
+using CallingConventions = Reloaded.Hooks.Definitions.X86.CallingConventions;
+using IReloadedHooks = Reloaded.Hooks.ReloadedII.Interfaces.IReloadedHooks;
 
 namespace nights.test.skipintro;
 
@@ -51,17 +54,49 @@ public class Mod : ModBase // <= Do not Remove.
         _modConfig = context.ModConfig;
 
 
-        // For more information about this template, please see
-        // https://reloaded-project.github.io/Reloaded-II/ModTemplate/
+		// For more information about this template, please see
+		// https://reloaded-project.github.io/Reloaded-II/ModTemplate/
 
-        // If you want to implement e.g. unload support in your mod,
-        // and some other neat features, override the methods in ModBase.
+		// If you want to implement e.g. unload support in your mod,
+		// and some other neat features, override the methods in ModBase.
 
-        // TODO: Implement some mod logic
-    }
+        // read from config
+		if (_configuration.SkipToGamemodeInt == -1) {
+			_skipToGamemode = _configuration.SkipToGamemode;
+		} else {
+			_skipToGamemode = (Gamemode)_configuration.SkipToGamemodeInt;
+		}
 
-    #region Standard Overrides
-    public override void ConfigurationUpdated(Config configuration)
+		// hook gameplay transition function
+		unsafe {
+            _gamemodeTransitionHook = _hooks.CreateHook<GamemodeTransition>(
+                GamemodeTransitionImpl, 0x489210
+            ).Activate();
+        }
+	}
+
+	IHook<GamemodeTransition> _gamemodeTransitionHook;
+    Gamemode _skipToGamemode;
+    bool _skipped = false; // can only skip once, probably unneeded
+	unsafe int GamemodeTransitionImpl(void* self) {
+        if (!_skipped) {
+			// unused, but nice to know
+			Gamemode* at = (Gamemode*)((byte*)self+0x8);
+			Gamemode* going_to = (Gamemode*)((byte*)self+0x10);
+
+		    if (*going_to == Gamemode.Advertise) {
+				*going_to = _skipToGamemode;
+				_skipped = true;
+		    }
+        }
+
+		return _gamemodeTransitionHook.OriginalFunction.Invoke(self);
+	}
+	[Function(CallingConventions.MicrosoftThiscall)]
+	unsafe delegate int GamemodeTransition(void* self);
+
+	#region Standard Overrides
+	public override void ConfigurationUpdated(Config configuration)
     {
         // Apply settings from configuration.
         // ... your code here.

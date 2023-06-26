@@ -2,7 +2,7 @@
   "ModId": "nights.test.skipintro",
   "ModName": "Skip Intro",
   "ModAuthor": "Jordan",
-  "ModVersion": "1.0.0",
+  "ModVersion": "1.1.0",
   "ModDescription": "Skips the Intro",
   "ModDll": "nights.test.skipintro.dll",
   "ModIcon": "Preview.png",
@@ -10,11 +10,36 @@
   "ModR2RManagedDll64": "x64/nights.test.skipintro.dll",
   "ModNativeDll32": "",
   "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
   "IsLibrary": false,
   "ReleaseMetadataFileName": "nights.test.skipintro.ReleaseMetadata.json",
-  "PluginData": {},
+  "PluginData": {
+    "GitHubDependencies": {
+      "IdToConfigMap": {
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        }
+      }
+    },
+    "GitHubRelease": {
+      "UserName": "Colon-D",
+      "RepositoryName": "nights-skip-intro",
+      "UseReleaseTag": true,
+      "AssetFileName": "Mod.zip"
+    }
+  },
   "IsUniversalMod": false,
-  "ModDependencies": [ "reloaded.sharedlib.hooks" ],
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks"
+  ],
   "OptionalDependencies": [],
   "SupportedAppId": [
     "nights.exe"
